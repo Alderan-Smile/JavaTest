@@ -3,6 +3,7 @@ package cl.smile.javatest.funciones;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.batch.item.ExecutionContext;
@@ -13,7 +14,7 @@ import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.core.io.FileSystemResource;
 
 import cl.smile.javatest.config.PropiedadesConfig;
-import cl.smile.javatest.model.FechaDto;
+import cl.smile.javatest.model.FechaEntity;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -24,8 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileEscritor {
     
-    public static FlatFileItemWriter<FechaDto> flatFileItemWriter = new FlatFileItemWriter<>();
-    public static DelimitedLineAggregator<FechaDto> delimitedLineAggregator = new DelimitedLineAggregator<>();
+    public static FlatFileItemWriter<FechaEntity> flatFileItemWriter = new FlatFileItemWriter<>();
+    public static DelimitedLineAggregator<FechaEntity> delimitedLineAggregator = new DelimitedLineAggregator<>();
     public static FileSystemResource fileName;
     static List<String> lineaHeader = new ArrayList<>();
 
@@ -35,14 +36,14 @@ public class FileEscritor {
                         "Tramo fijo";
         
 
-    public static BeanWrapperFieldExtractor<FechaDto> beanWrapperFieldExtractor = new BeanWrapperFieldExtractor<FechaDto>(){
+    public static BeanWrapperFieldExtractor<FechaEntity> beanWrapperFieldExtractor = new BeanWrapperFieldExtractor<FechaEntity>(){
         @Override
-        public Object[] extract(FechaDto adelTrxDto){
+        public Object[] extract(FechaEntity adelTrxDto){
             return new Object[] {
-                adelTrxDto.getFechaDate(),
+                adelTrxDto.getId().getFechaDate(),
                 adelTrxDto.getFechaC(),
                 adelTrxDto.getHoraStr(),
-                adelTrxDto.getTramoInt()
+                adelTrxDto.getId().getTramoInt()
             };
         }
     };
@@ -51,9 +52,9 @@ public class FileEscritor {
      * @param items Recibe una lista de objetos para escribir
      * @param file Recibe el nombre del archivo a escribir
      */
-    public static void escribirArchivo(List<FechaDto> items,String file){
+    public static void escribirArchivo(List<FechaEntity> items,String file){
 
-        fileName = new FileSystemResource(PropiedadesConfig.getFilePath()+file+PropiedadesConfig.getFileNameSep()+PropiedadesConfig.getFileNameExt());
+        fileName = new FileSystemResource(PropiedadesConfig.getFilePath()+file+PropiedadesConfig.getFileNameSep()+TimeModifier.dateToString("ddMMyy",new Date())+PropiedadesConfig.getFileNameExt());
         flatFileItemWriter.setResource(fileName);
         log.info("{}",fileName);
         flatFileItemWriter.setAppendAllowed(PropiedadesConfig.getAppendFile());

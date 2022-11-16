@@ -6,6 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 
 import cl.smile.javatest.config.PropiedadesConfig;
 import cl.smile.javatest.funciones.FileEscritor;
+import cl.smile.javatest.funciones.GuardadorDeEntidades;
 import cl.smile.javatest.funciones.ManipuladorEntidadDto;
 import cl.smile.javatest.funciones.TimeModifier;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +20,10 @@ import org.apache.commons.lang3.time.DateUtils;
  * @since 2022
  */
 @SpringBootApplication
-@PropertySource(value = {"file:JavaTest.properties"})
+@PropertySource(value = {"file:../javatest/JavaTest.properties"})
 @Slf4j
 public class App {
+
     public static void main(String[] args) {
 
         SpringApplication.run(App.class, args);
@@ -56,5 +58,9 @@ public class App {
         
         log.info("########################################################################################");
         log.info("########################################################################################");
+
+        log.info("Guardando fechas en DataBase");
+        GuardadorDeEntidades.guardaDataBase(ManipuladorEntidadDto.getListTramo(),ManipuladorEntidadDto.getListNoTramo());
+        log.info("Fechas guardadas en DataBase");
     }
 }
