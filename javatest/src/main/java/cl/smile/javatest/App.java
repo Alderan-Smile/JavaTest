@@ -12,6 +12,9 @@ import cl.smile.javatest.funciones.TimeModifier;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.time.DateUtils;
 
 /**
@@ -62,5 +65,10 @@ public class App {
         log.info("Guardando fechas en DataBase");
         GuardadorDeEntidades.guardaDataBase(ManipuladorEntidadDto.getListTramo(),ManipuladorEntidadDto.getListNoTramo());
         log.info("Fechas guardadas en DataBase");
+
+        log.info("########################################################################################");
+        log.info("########################################################################################");
+
+        log.info("{}", ManipuladorEntidadDto.getListTramo().stream().filter(p->p.getFechaC().equals("15112022")).collect(Collectors.toList()));
     }
 }
