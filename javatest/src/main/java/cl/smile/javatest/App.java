@@ -12,7 +12,9 @@ import cl.smile.javatest.funciones.TimeModifier;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
-import java.util.stream.Collector;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.time.DateUtils;
@@ -35,6 +37,8 @@ public class App {
         Date cale = DateUtils.addHours(cal, -48);
 
         ManipuladorEntidadDto.setTramos(cal,cale);
+
+        List<Long> terra = new ArrayList<Long>(Arrays.asList(58L,36L,54L));
 
         log.info("########################################################################################");
         log.info("########################################################################################");
@@ -70,5 +74,10 @@ public class App {
         log.info("########################################################################################");
 
         log.info("{}", ManipuladorEntidadDto.getListTramo().stream().filter(p->p.getFechaC().equals("15112022")).collect(Collectors.toList()));
+        
+        log.info("########################################################################################");
+        log.info("########################################################################################");
+
+        log.info("Terra {}",terra.stream().filter(i->i.equals(58L)).toString());
     }
 }
