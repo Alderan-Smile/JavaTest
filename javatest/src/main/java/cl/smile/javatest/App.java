@@ -8,6 +8,7 @@ import cl.smile.javatest.config.PropiedadesConfig;
 import cl.smile.javatest.funciones.FileEscritor;
 import cl.smile.javatest.funciones.GuardadorDeEntidades;
 import cl.smile.javatest.funciones.ManipuladorEntidadDto;
+import org.springframework.context.ConfigurableApplicationContext;
 import cl.smile.javatest.funciones.TimeModifier;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +32,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(App.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(App.class, args);
 
         Date cal = new Date();
         Date cale = DateUtils.addHours(cal, -48);
@@ -79,5 +80,7 @@ public class App {
         log.info("########################################################################################");
 
         log.info("Terra {}",terra.stream().filter(i->i.equals(58L)).toString());
+
+        ctx.close();
     }
 }
