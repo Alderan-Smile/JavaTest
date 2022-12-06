@@ -1,5 +1,7 @@
 package cl.smile.javatest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
@@ -10,7 +12,6 @@ import cl.smile.javatest.funciones.GuardadorDeEntidades;
 import cl.smile.javatest.funciones.ManipuladorEntidadDto;
 import org.springframework.context.ConfigurableApplicationContext;
 import cl.smile.javatest.funciones.TimeModifier;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
@@ -27,8 +28,9 @@ import org.apache.commons.lang3.time.DateUtils;
  */
 @SpringBootApplication
 @PropertySource(value = {"file:../javatest/JavaTest.properties"})
-@Slf4j
 public class App {
+
+    private static final Logger log = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
 
