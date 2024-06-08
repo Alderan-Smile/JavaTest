@@ -1,2 +1,2 @@
-# Directorio de pruebas para codigo java
-### Este directorio de pruebas para Java fue realizado para el uso de código para Trabajos/Estudios de uso libre y su entendimiento en caso de aprendizaje.
+# JavaTest
+Java de ejemplo con uso de la Dependencia de function_fun v0.1.4 y su SuitJdbcSpring.
