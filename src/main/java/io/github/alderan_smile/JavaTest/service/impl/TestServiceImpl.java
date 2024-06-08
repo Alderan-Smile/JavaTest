@@ -33,8 +33,8 @@ public class TestServiceImpl implements TestService {
         MavenTest mavenTest = new MavenTest();
         MavenTestPk mavenTestPk = new MavenTestPk();
 
-        //mavenTestPk.setIdentificador(funRandomizer.randomInt(1,99999).toString());
-        mavenTestPk.setIdentificador("16628");
+        mavenTestPk.setIdentificador(funRandomizer.randomInt(1,99999).toString());
+        //mavenTestPk.setIdentificador("16628");
         log.info("ID: {}",mavenTestPk.getIdentificador());
         mavenTest.setMavenTestPk(mavenTestPk);
         mavenTest.setFechaExec(new Date());
@@ -42,7 +42,7 @@ public class TestServiceImpl implements TestService {
         mavenTest.setMessage("Java Test Boot");
 
         try {
-            mavenRepository.save(mavenTest,mavenTest.getMavenTestPk());
+            mavenRepository.save(mavenTest);
             TestResponse testResponse = new TestResponse();
             testResponse.setMessage("Test OK");
             testResponse.setStatus("200");
