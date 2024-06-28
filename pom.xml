@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>io.github.alderan-smile</groupId>
 			<artifactId>function_fun</artifactId>
-			<version>0.1.5</version>
+			<version>0.1.6</version>
 		</dependency>
 
 		<dependency>
